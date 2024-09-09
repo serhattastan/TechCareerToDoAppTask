@@ -41,6 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.cloffygames.techcareertodoapptask.data.entity.Task
+import com.cloffygames.techcareertodoapptask.ui.theme.AppBarColor
+import com.cloffygames.techcareertodoapptask.ui.theme.BackgroundColor
+import com.cloffygames.techcareertodoapptask.ui.theme.HighPriorityColor
+import com.cloffygames.techcareertodoapptask.ui.theme.LowPriorityColor
+import com.cloffygames.techcareertodoapptask.ui.theme.MediumPriorityColor
 import com.cloffygames.techcareertodoapptask.uix.uicomponent.PriorityRadioButton
 import com.cloffygames.techcareertodoapptask.uix.viewmodel.DetailViewModel
 
@@ -72,7 +77,7 @@ fun DetailScreen(navController: NavController, detailViewModel: DetailViewModel,
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color(0xFFFFA726), // Üst bar arka plan rengi
+                    containerColor = AppBarColor, // Üst bar arka plan rengi
                     titleContentColor = Color.White
                 )
             )
@@ -82,7 +87,7 @@ fun DetailScreen(navController: NavController, detailViewModel: DetailViewModel,
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFF0F0F0))
+                    .background(BackgroundColor)
                     .padding(paddingValues)
                     .padding(24.dp),
                 contentAlignment = Alignment.Center
@@ -142,21 +147,21 @@ fun DetailScreen(navController: NavController, detailViewModel: DetailViewModel,
                                     selected = taskPriority == 1,
                                     onClick = { taskPriority = 1 },
                                     label = "Low",
-                                    color = Color(0xFF90CAF9)
+                                    color = LowPriorityColor
                                 )
                                 // Orta öncelik radyo butonu
                                 PriorityRadioButton(
                                     selected = taskPriority == 2,
                                     onClick = { taskPriority = 2 },
                                     label = "Medium",
-                                    color = Color(0xFFFFF176)
+                                    color = MediumPriorityColor
                                 )
                                 // Yüksek öncelik radyo butonu
                                 PriorityRadioButton(
                                     selected = taskPriority == 3,
                                     onClick = { taskPriority = 3 },
                                     label = "High",
-                                    color = Color(0xFFF44336)
+                                    color = HighPriorityColor
                                 )
                             }
                         }
@@ -180,7 +185,7 @@ fun DetailScreen(navController: NavController, detailViewModel: DetailViewModel,
                             .fillMaxWidth()
                             .padding(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFFFA726),
+                            containerColor = AppBarColor,
                             contentColor = Color.White
                         ),
                         shape = MaterialTheme.shapes.medium

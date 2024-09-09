@@ -37,6 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.cloffygames.techcareertodoapptask.data.entity.Task
+import com.cloffygames.techcareertodoapptask.ui.theme.AppBarColor
+import com.cloffygames.techcareertodoapptask.ui.theme.BackgroundColor
 import com.cloffygames.techcareertodoapptask.ui.theme.SuseFontFamily
 import com.cloffygames.techcareertodoapptask.uix.uicomponent.TaskItem
 import com.cloffygames.techcareertodoapptask.uix.viewmodel.HomeViewModel
@@ -92,7 +94,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color(0xFFFFA726), // Üst bar arka plan rengi
+                    containerColor = AppBarColor, // Üst bar arka plan rengi
                     titleContentColor = Color.White
                 ),
                 actions = {
@@ -117,7 +119,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
             // Görev eklemek için FloatingActionButton
             FloatingActionButton(
                 onClick = { navController.navigate("addTaskScreen") },
-                containerColor = Color(0xFFFFA726)
+                containerColor = AppBarColor
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Task", tint = Color.White)
             }
@@ -127,7 +129,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFF5F5F5)) // Arka plan rengi
+                    .background(BackgroundColor) // Arka plan rengi
                     .padding(paddingValues)
             ) {
                 TaskList(

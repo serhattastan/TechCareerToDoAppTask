@@ -14,7 +14,15 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cloffygames.techcareertodoapptask.data.entity.Task
+import com.cloffygames.techcareertodoapptask.ui.theme.CheckedCheckboxColor
+import com.cloffygames.techcareertodoapptask.ui.theme.CompletedTaskColor
+import com.cloffygames.techcareertodoapptask.ui.theme.CompletedTaskContentColor
+import com.cloffygames.techcareertodoapptask.ui.theme.HighPriorityColor
+import com.cloffygames.techcareertodoapptask.ui.theme.LowPriorityColor
+import com.cloffygames.techcareertodoapptask.ui.theme.MediumPriorityColor
 import com.cloffygames.techcareertodoapptask.ui.theme.SuseFontFamily
+import com.cloffygames.techcareertodoapptask.ui.theme.UncheckedCheckboxColor
+import com.cloffygames.techcareertodoapptask.ui.theme.UncompletedTaskContentColor
 
 /**
  * TaskItem composable fonksiyonu, tek bir görev kartını görüntüler.
@@ -38,9 +46,9 @@ fun TaskItem(
 
     // Görevin öncelik seviyesine göre kartın rengi belirlenir
     val priorityColor = when (task.priority) {
-        1 -> Color(0xFF90CAF9) // Düşük öncelik rengi
-        2 -> Color(0xFFFFF176) // Orta öncelik rengi
-        3 -> Color(0xFFF44336) // Yüksek öncelik rengi
+        1 -> LowPriorityColor // Düşük öncelik rengi
+        2 -> MediumPriorityColor // Orta öncelik rengi
+        3 -> HighPriorityColor // Yüksek öncelik rengi
         else -> Color.LightGray // Bilinmeyen öncelik rengi
     }
 
@@ -51,8 +59,8 @@ fun TaskItem(
             .padding(4.dp)
             .clickable { onTaskClick() }, // Göreve tıklandığında detaylarına gitmek için
         colors = CardDefaults.cardColors(
-            containerColor = if (isTaskCompleted) Color(0xFFE0E0E0) else priorityColor, // Tamamlanmış görevlerde gri renk
-            contentColor = if (isTaskCompleted) Color(0xFF757575) else Color(0xFF212121) // Yazı rengi
+            containerColor = if (isTaskCompleted) CompletedTaskColor else priorityColor, // Tamamlanmış görevlerde gri renk
+            contentColor = if (isTaskCompleted) CompletedTaskContentColor else UncompletedTaskContentColor // Yazı rengi
         ),
         elevation = CardDefaults.cardElevation(8.dp) // Kartın gölgelendirmesi
     ) {
@@ -68,8 +76,8 @@ fun TaskItem(
                 checked = isTaskCompleted,
                 onCheckedChange = { onTaskCompletedChange(it) }, // Tamamlanma durumu değiştirildiğinde çağrılır
                 colors = CheckboxDefaults.colors(
-                    checkedColor = Color(0xFF4CAF50), // Tamamlanmış görev için yeşil renk
-                    uncheckedColor = Color(0xFFBDBDBD) // Tamamlanmamış görev için gri renk
+                    checkedColor = CheckedCheckboxColor, // Tamamlanmış görev için yeşil renk
+                    uncheckedColor = UncheckedCheckboxColor // Tamamlanmamış görev için gri renk
                 )
             )
 
