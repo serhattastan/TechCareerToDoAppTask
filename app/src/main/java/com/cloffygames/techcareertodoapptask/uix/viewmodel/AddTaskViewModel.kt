@@ -9,11 +9,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * AddTaskViewModel, yeni görev ekleme işlemlerini yöneten ViewModel sınıfıdır.
+ * Görev verilerini TaskRepository üzerinden yönetir.
+ *
+ * @param trepo TaskRepository, görev verilerini yöneten repository'dir.
+ */
 @HiltViewModel
 class AddTaskViewModel @Inject constructor(var trepo: TaskRepository) : ViewModel() {
-    fun insertTask(task: Task){
+
+    /**
+     * Yeni bir görev eklemek için kullanılan fonksiyon.
+     * Bu işlem, CoroutineScope kullanılarak ana thread'de asenkron olarak yapılır.
+     *
+     * @param task Eklenmek istenen görev nesnesi.
+     */
+    fun insertTask(task: Task) {
         CoroutineScope(Dispatchers.Main).launch {
-            trepo.insertTask(task)
+            trepo.insertTask(task) // Görev repository üzerinden veritabanına eklenir.
         }
     }
 }

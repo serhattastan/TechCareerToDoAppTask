@@ -4,44 +4,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
 import com.cloffygames.techcareertodoapptask.ui.theme.TechCareerToDoAppTaskTheme
+import com.cloffygames.techcareertodoapptask.uix.view.Transitions
+import com.cloffygames.techcareertodoapptask.uix.viewmodel.AddTaskViewModel
+import com.cloffygames.techcareertodoapptask.uix.viewmodel.DetailViewModel
+import com.cloffygames.techcareertodoapptask.uix.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    val homeViewModel : HomeViewModel by viewModels()
+    val addTaskViewModel : AddTaskViewModel by viewModels()
+    val detailViewModel : DetailViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             TechCareerToDoAppTaskTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Transitions(homeViewModel, addTaskViewModel, detailViewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TechCareerToDoAppTaskTheme {
-        Greeting("Android")
     }
 }
