@@ -9,12 +9,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.cloffygames.techcareertodoapptask.data.entity.Task
 import com.cloffygames.techcareertodoapptask.uix.uicomponent.PriorityRadioButton
 import com.cloffygames.techcareertodoapptask.uix.viewmodel.AddTaskViewModel
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 
 /**
  * AddTaskScreen, kullanıcıların yeni bir görev ekleyebileceği ekrandır.
@@ -36,7 +40,7 @@ fun AddTaskScreen(navController: NavController, addTaskViewModel: AddTaskViewMod
         topBar = {
             // Üst bar (TopAppBar), geri dönme butonu ve başlığı içerir.
             CenterAlignedTopAppBar(
-                title = { Text(text = "Add New Task", color = Color.White) },
+                title = { Text(text = "Add New Task", color = Color.White, style = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold, fontSize = 20.sp)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
@@ -67,7 +71,7 @@ fun AddTaskScreen(navController: NavController, addTaskViewModel: AddTaskViewMod
                     OutlinedTextField(
                         value = taskTitle,
                         onValueChange = { taskTitle = it },
-                        label = { Text("Task Title") },
+                        label = { Text("Task Title", style = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal, fontSize = 14.sp)) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp), // TextField'lar arasında boşluk
@@ -79,7 +83,7 @@ fun AddTaskScreen(navController: NavController, addTaskViewModel: AddTaskViewMod
                     OutlinedTextField(
                         value = taskDescription,
                         onValueChange = { taskDescription = it },
-                        label = { Text("Task Description") },
+                        label = { Text("Task Description", style = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal, fontSize = 14.sp)) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp),
@@ -89,7 +93,7 @@ fun AddTaskScreen(navController: NavController, addTaskViewModel: AddTaskViewMod
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Görev önceliği seçimi
-                    Text("Priority", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(8.dp))
+                    Text("Priority", style = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 16.sp), modifier = Modifier.padding(8.dp))
 
                     // Öncelik seviyesini seçmek için radyo butonları içeren kart bileşeni
                     Card(
@@ -159,7 +163,7 @@ fun AddTaskScreen(navController: NavController, addTaskViewModel: AddTaskViewMod
                         ),
                         shape = MaterialTheme.shapes.medium
                     ) {
-                        Text("Add Task", style = MaterialTheme.typography.labelLarge)
+                        Text("Add Task", style = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium, fontSize = 16.sp))
                     }
                 }
             }

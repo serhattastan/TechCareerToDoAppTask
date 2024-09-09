@@ -1,15 +1,28 @@
 package com.cloffygames.techcareertodoapptask.uix.view
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -19,9 +32,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.cloffygames.techcareertodoapptask.data.entity.Task
+import com.cloffygames.techcareertodoapptask.ui.theme.SuseFontFamily
 import com.cloffygames.techcareertodoapptask.uix.uicomponent.TaskItem
 import com.cloffygames.techcareertodoapptask.uix.viewmodel.HomeViewModel
 import com.google.gson.Gson
@@ -61,7 +77,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
                                 tf.value = it
                                 homeViewModel.searchTasks(it) // Arama sonuçlarını getirir
                             },
-                            label = { Text(text = "Ara") },
+                            label = { Text(text = "Ara", style = TextStyle(fontFamily = SuseFontFamily, fontSize = 16.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)) },
                             colors = TextFieldDefaults.textFieldColors(
                                 containerColor = Color.Transparent,
                                 focusedIndicatorColor = Color.White,
@@ -72,7 +88,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
                         )
                     } else {
                         // Arama durumu kapalıysa başlık gösterilir
-                        Text("My Tasks", style = MaterialTheme.typography.headlineMedium, color = Color.White)
+                        Text("My Tasks", style = TextStyle(fontFamily = SuseFontFamily, fontSize = 24.sp), fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, color = Color.White)
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -149,7 +165,7 @@ fun TaskList(
     if (taskList.isEmpty()) {
         // Görev listesi boşsa bilgilendirme mesajı gösterilir
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("No tasks available.", style = MaterialTheme.typography.bodyLarge)
+            Text("No tasks available.", style = TextStyle(fontFamily = SuseFontFamily, fontSize = 18.sp))
         }
     } else {
         // Görevler LazyColumn ile listelenir

@@ -2,9 +2,11 @@ package com.cloffygames.techcareertodoapptask.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.cloffygames.techcareertodoapptask.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -31,4 +33,13 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+
+// Suse font ailesini statik olarak tanımlıyoruz
+val SuseFontFamily = FontFamily(
+    Font(R.font.suse_regular),
+    Font(R.font.suse_bold),
+    Font(R.font.suse_light),
+    Font(R.font.suse_medium),
+    Font(R.font.suse_thin)
 )

@@ -9,9 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cloffygames.techcareertodoapptask.data.entity.Task
+import com.cloffygames.techcareertodoapptask.ui.theme.SuseFontFamily
 
 /**
  * TaskItem composable fonksiyonu, tek bir görev kartını görüntüler.
@@ -79,12 +82,21 @@ fun TaskItem(
                 // Görev başlığı, eğer görev tamamlanmışsa üzeri çizili gösterilir
                 Text(
                     text = task.title,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = TextStyle(
+                        fontFamily = SuseFontFamily,
+                        fontSize = 20.sp
+                    ),
                     textDecoration = if (isTaskCompleted) TextDecoration.LineThrough else TextDecoration.None
                 )
                 Spacer(modifier = Modifier.height(4.dp)) // Başlık ve açıklama arasında boşluk
                 // Görev açıklaması
-                Text(task.description, style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text = task.description,
+                    style = TextStyle(
+                        fontFamily = SuseFontFamily,
+                        fontSize = 16.sp
+                    )
+                )
             }
 
             // Silme butonu ve öncelik seviyesi göstergesi
@@ -101,7 +113,10 @@ fun TaskItem(
                         3 -> "High" // Yüksek öncelik
                         else -> "Unknown" // Bilinmeyen öncelik
                     },
-                    style = MaterialTheme.typography.bodySmall
+                    style = TextStyle(
+                        fontFamily = SuseFontFamily,
+                        fontSize = 14.sp
+                    )
                 )
             }
         }

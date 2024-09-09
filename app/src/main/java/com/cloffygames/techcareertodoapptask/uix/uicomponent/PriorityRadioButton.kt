@@ -10,7 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.cloffygames.techcareertodoapptask.ui.theme.SuseFontFamily
 
 /**
  * PriorityRadioButton composable fonksiyonu, kullanıcıların görev öncelik seviyesini seçmesini sağlar.
@@ -41,7 +45,12 @@ fun PriorityRadioButton(selected: Boolean, onClick: () -> Unit, label: String, c
         Text(
             text = label,
             modifier = Modifier.padding(start = 4.dp), // Buton ile metin arasında boşluk bırakır
-            color = if (selected) color else Color.Gray // Seçiliyse belirli renkte, değilse gri renkte gösterilir
+            color = if (selected) color else Color.Gray, // Seçiliyse belirli renkte, değilse gri renkte gösterilir
+            style = TextStyle(
+                fontFamily = SuseFontFamily,
+                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
+                fontSize = 16.sp
+            )
         )
     }
 }
