@@ -164,20 +164,31 @@ fun TaskList(
     onTaskCompletedChange: (Task, Boolean) -> Unit,
     onTaskDelete: (Task) -> Unit
 ) {
+    // Görevleri tamamlanmış ve tamamlanmamış olarak ayırıyoruz
+    val incompleteTasks = taskList.filter { it.isCompleted == 0 }
+    val completedTasks = taskList.filter { it.isCompleted == 1 }
+
     if (taskList.isEmpty()) {
         // Görev listesi boşsa bilgilendirme mesajı gösterilir
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text("No tasks available.", style = TextStyle(fontFamily = SuseFontFamily, fontSize = 18.sp))
         }
     } else {
-        // Görevler LazyColumn ile listelenir
+        // Görevler LazyColumn ile listelenir, önce tamamlanmamış görevler sonra tamamlanmış görevler gösterilir
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(taskList) { task ->
-                // Her görev için TaskItem composable'ı çağrılır
+            items(incompleteTasks) { task ->
+                TaskItem(
+                    task = task,
+                    onTaskClick = { onTaskClick(task) },
+                    onTaskCompletedChange = { onTaskCompletedChange(task, it) },
+                    onTaskDelete = { onTaskDelete(task) }
+                )
+            }
+            items(completedTasks) { task ->
                 TaskItem(
                     task = task,
                     onTaskClick = { onTaskClick(task) },
@@ -188,3 +199,4 @@ fun TaskList(
         }
     }
 }
+

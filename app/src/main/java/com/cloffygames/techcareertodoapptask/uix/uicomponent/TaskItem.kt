@@ -51,6 +51,13 @@ fun TaskItem(
         3 -> HighPriorityColor // Yüksek öncelik rengi
         else -> Color.LightGray // Bilinmeyen öncelik rengi
     }
+    // Görevin öncelik seviyesine göre kartın rengi belirlenir
+    val iconsPriorityColor = when (task.priority) {
+        1 -> HighPriorityColor // Düşük öncelik rengi
+        2 -> LowPriorityColor // Orta öncelik rengi
+        3 -> MediumPriorityColor // Yüksek öncelik rengi
+        else -> Color.LightGray // Bilinmeyen öncelik rengi
+    }
 
     // Kart görünümü, görev bilgilerini içerir
     Card(
@@ -77,7 +84,7 @@ fun TaskItem(
                 onCheckedChange = { onTaskCompletedChange(it) }, // Tamamlanma durumu değiştirildiğinde çağrılır
                 colors = CheckboxDefaults.colors(
                     checkedColor = CheckedCheckboxColor, // Tamamlanmış görev için yeşil renk
-                    uncheckedColor = UncheckedCheckboxColor // Tamamlanmamış görev için gri renk
+                    uncheckedColor = iconsPriorityColor // Tamamlanmamış görev için gri renk
                 )
             )
 
@@ -111,7 +118,7 @@ fun TaskItem(
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 // Görev silme butonu
                 IconButton(onClick = onTaskDelete) {
-                    Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Task", tint = Color.DarkGray)
+                    Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Task", tint = iconsPriorityColor)
                 }
                 // Görevin öncelik seviyesini gösteren metin
                 Text(
@@ -124,7 +131,8 @@ fun TaskItem(
                     style = TextStyle(
                         fontFamily = SuseFontFamily,
                         fontSize = 14.sp
-                    )
+                    ),
+                    color = iconsPriorityColor
                 )
             }
         }
